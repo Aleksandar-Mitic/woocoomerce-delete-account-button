@@ -2,6 +2,8 @@
 /*
  * Woocommerce Delete Account Button
  *
+ * This class allows non-admin users to delete their profile inside woocommerce account
+ *
  * @author Ivijan-Stefan Stipic <creativform@gmail.com>
  * @ver 1.0.0
  * @url http://creativform.com
@@ -22,10 +24,20 @@ if(!class_exists('Woocommerce_Account_Delete')) :
 			}
 		}
 		
+		
+		/*
+		* Custom Endpoint
+		* @since 1.0.0
+		*/
 		function endpoints() {
 			add_rewrite_endpoint( 'delete-account', EP_ROOT | EP_PAGES );
 		}
 		
+		
+		/*
+		* POST action perform delete account
+		* @since 1.0.0
+		*/
 		function delete_account() {
 			if(
 				is_user_logged_in() 
@@ -59,21 +71,40 @@ if(!class_exists('Woocommerce_Account_Delete')) :
 			}
 		}
 		
+		
+		/*
+		* Query variable
+		* @since 1.0.0
+		*/
 		function query_vars( $vars ) {
 			$vars[] = 'delete-account';
-		
 			return $vars;
 		}
 		
+		
+		/*
+		* Rewrite rules
+		* @since 1.0.0
+		*/
 		function flush_rewrite_rules() {
 			flush_rewrite_rules();
 		}
 		
+		
+		/*
+		* Delete account link inside my account menu
+		* @since 1.0.0
+		*/
 		function my_account_menu_items( $items ) {
 			//$items['delete-account'] = __( 'Delete Account' );			
 			return $items;
 		}
 		
+		
+		/*
+		* Delete account button inside edit account page
+		* @since 1.0.0
+		*/
 		function edit_account(){ ?>
             <div class="mt-3 text-right text-danger">
                 <a href="<?php 
@@ -87,17 +118,21 @@ if(!class_exists('Woocommerce_Account_Delete')) :
             </div>
         <?php }
 		
+		/*
+		* ENDPOINT: Page content
+		* @since 1.0.0
+		*/
 		function endpoint_content() { ?>
 <div class="card">
     <div class="card-header">
-        <?php _e('Delete your user account and personal data'); ?>
+        <?php _ge_e('Delete your user account and personal data'); ?>
     </div>
     <div class="card-body">
-        <p class="card-text"><?php _e('Have you decided to delete your account? There are no problems but you must know that when you start this process, <strong>THERE IS NO BACK</strong>. All your activities, references, private and public information, affiliate informations, etc. will be permanently deleted WITHOUT the possibility to return back.'); ?></p>
-        <p class="card-text"><strong><?php _e('Think twice before deleting the profile.'); ?></strong></p>
+        <p class="card-text"><?php _ge_e('Have you decided to delete your account? There are no problems but you must know that when you start this process, <strong>THERE IS NO BACK</strong>. All your activities, references, private and public information, affiliate informations, etc. will be permanently deleted WITHOUT the possibility to return back.'); ?></p>
+        <p class="card-text"><strong><?php _ge_e('Think twice before deleting the profile.'); ?></strong></p>
         <form method="post" name="account-delete" id="form-delete-account">
-            <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="btn btn-outline-secondary"><?php _e('I CHANGE MY MIND'); ?></a> 
-            <button type="submit" class="btn btn-danger" id="delete-profile"><?php _e('DELETE PROFILE'); ?></button>
+            <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="btn btn-outline-secondary"><?php _ge_e('I CHANGE MY MIND'); ?></a> 
+            <button type="submit" class="btn btn-danger" id="delete-profile"><?php _ge_e('DELETE PROFILE'); ?></button>
             <input type="hidden" name="delete-account-id" value="<?php echo get_current_user_id(); ?>" />
             <input type="hidden" name="delete-account" value="true" />
         </form>
