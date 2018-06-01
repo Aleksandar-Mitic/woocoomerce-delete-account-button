@@ -1,4 +1,11 @@
 <?php if (!defined('WPINC') || !defined('ABSPATH')) die("Don't try to trick us. We know who you are!");
+/*
+ * Woocommerce Delete Account Button
+ *
+ * @author Ivijan-Stefan Stipic <creativform@gmail.com>
+ * @ver 1.0.0
+ * @url http://creativform.com
+*/
 if(!class_exists('Woocommerce_Account_Delete')) :
 	class Woocommerce_Account_Delete
 	{
