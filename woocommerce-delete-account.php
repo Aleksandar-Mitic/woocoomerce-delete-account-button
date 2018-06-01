@@ -45,9 +45,9 @@ if(!class_exists('Woocommerce_Account_Delete')) :
 				$deleted = wp_delete_user( $user_id );
 			
 				if ( $deleted ) {
-					wc_add_notice(_ge('Account deleted. Thank you for using our service.'));
+					wc_add_notice(__('Account deleted. Thank you for using our service.'));
 				} else {
-					wc_add_notice(_ge('Account can\'t be deleted. Call system administrator or technical support.'), 'error');
+					wc_add_notice(__('Account can\'t be deleted. Call system administrator or technical support.'), 'error');
 				}
 			}
 		}
@@ -63,7 +63,7 @@ if(!class_exists('Woocommerce_Account_Delete')) :
 		}
 		
 		function my_account_menu_items( $items ) {
-			//$items['delete-account'] = _ge( 'Delete Account' );			
+			//$items['delete-account'] = __( 'Delete Account' );			
 			return $items;
 		}
 		
@@ -83,14 +83,14 @@ if(!class_exists('Woocommerce_Account_Delete')) :
 		function endpoint_content() { ?>
 <div class="card">
     <div class="card-header">
-        <?php _ge_e('Delete your user account and personal data'); ?>
+        <?php _e('Delete your user account and personal data'); ?>
     </div>
     <div class="card-body">
-        <p class="card-text"><?php _ge_e('Have you decided to delete your account? There are no problems but you must know that when you start this process, <strong>THERE IS NO BACK</strong>. All your activities, references, private and public information, affiliate informations, etc. will be permanently deleted WITHOUT the possibility to return back.'); ?></p>
-        <p class="card-text"><strong><?php _ge_e('Think twice before deleting the profile.'); ?></strong></p>
+        <p class="card-text"><?php _e('Have you decided to delete your account? There are no problems but you must know that when you start this process, <strong>THERE IS NO BACK</strong>. All your activities, references, private and public information, affiliate informations, etc. will be permanently deleted WITHOUT the possibility to return back.'); ?></p>
+        <p class="card-text"><strong><?php _e('Think twice before deleting the profile.'); ?></strong></p>
         <form method="post" name="account-delete" id="form-delete-account">
-            <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="btn btn-outline-secondary"><?php _ge_e('I CHANGE MY MIND'); ?></a> 
-            <button type="submit" class="btn btn-danger" id="delete-profile"><?php _ge_e('DELETE PROFILE'); ?></button>
+            <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="btn btn-outline-secondary"><?php _e('I CHANGE MY MIND'); ?></a> 
+            <button type="submit" class="btn btn-danger" id="delete-profile"><?php _e('DELETE PROFILE'); ?></button>
             <input type="hidden" name="delete-account-id" value="<?php echo get_current_user_id(); ?>" />
             <input type="hidden" name="delete-account" value="true" />
         </form>
